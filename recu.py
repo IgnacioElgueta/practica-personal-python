@@ -20,7 +20,7 @@ def mostrar_menu():
 def leer_menu():
     while True:
         try:
-            opcion = int(input("Selecciona una opcion\n-"))
+            opcion = int(input("Selecciona una opcion\n- "))
             if 1 <= opcion <= 6:
                 return opcion
             else:
@@ -30,17 +30,17 @@ def leer_menu():
 
 def agregar_producto(lista):
     print("\n---Registrar nuevo producto---")
-    nombre = input("Ingrese el nombrr del producto\n-")
+    nombre = input("Ingrese el nombre del producto\n- ")
     if not nombre_producto(nombre):
         print("Error, no puede estar vacio el nombre")
         return
     try:
-        stock = int(input("Ingrese la cantidad de stock que desea agregar\n-"))
+        stock = int(input("Ingrese la cantidad de stock que desea agregar\n- "))
         if not stock_bodega(stock):
             print("Error , debe ser un numero entero mayor o igual a 0")
             return
         
-        precio = float(input("Ingrese el precio del producto\n-"))
+        precio = float(input("Ingrese el precio del producto\n- "))
         if not precio_producto(precio):
             print("error, el precio debe ser un numero decimal mayor a 0")
             return
@@ -65,7 +65,7 @@ def Buscar_producto(lista, nombre):
     return -1
 
 def eliminar_producto(lista):
-    eliminar = input("¿Que producto desea eliminar?\n-")
+    eliminar = input("¿Que producto desea eliminar?\n- ")
     posicion = Buscar_producto(lista, eliminar)
 
     if posicion == -1:
@@ -97,10 +97,13 @@ while True:
         agregar_producto(lista_productos)
     
     elif opcion == 2:
-        nombre = input("Ingrese el nombre del producto\n-")
+        nombre = input("Ingrese el nombre del producto\n- ")
         posicion = Buscar_producto(lista_productos, nombre)
 
         if posicion == -1:
+            print("Error: Producto no encontrado en el sistema.")
+        
+        else:
             print("Producto encontrado")
             print(f"nombre: {lista_productos[posicion]['nombre']}")
             print(f"stock: {lista_productos[posicion]['stock']}")
@@ -118,9 +121,10 @@ while True:
         else:
             for p in lista_productos:
                 disponibilidad = "disponible" if p["disponible"] else "no disponible"
-                print(f"nombre: {p['nombre']} | stock: {p['stock']} | precio: {['precio']} | disponiblididad: {disponibilidad}")
+                print(f"nombre: {p['nombre']} | stock: {p['stock']} | precio: {p['precio']} | disponiblididad: {disponibilidad}")
                 print("-" * 40)
 
     elif opcion == 6:
         print("Gracias por usar el sistema. Vuelva Pronto") 
         break
+    
